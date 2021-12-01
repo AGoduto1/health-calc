@@ -1,4 +1,4 @@
 
 function initApplication() {
-    console.log('starting Health Insurance Risk Calculator...');
+    console.log('Starting Health Insurance Risk Calculator...');
 }
