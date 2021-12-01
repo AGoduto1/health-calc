@@ -103,8 +103,19 @@ function calculateRisk() {
     let bloodPressureResponseValue = parseInt(document.getElementById("bloodPressureID").selectedOptions[0].value);
     console.log("bloodPressureResponseValue = " + bloodPressureResponseValue);
 
-    let totalRisk = ageResponseValue
-    console.log("totalRisk = " + totalRisk + bmiResponseValue + bloodPressureResponseValue)
+// Get Diabetes ID
+    let diabetesResponseValue = parseInt(document.getElementById("diabetesID").selectedOptions[0].value);
+    console.log("diabetesResponseValue = " + diabetesResponseValue);
+// Get Cancer ID
+    let cancerResponseValue = parseInt(document.getElementById("cancerID").selectedOptions[0].value);
+    console.log("cancerResponseValue = " + cancerResponseValue);
+
+// Get Alzheimer ID
+    let alzheimerResponseValue = parseInt(document.getElementById("alzheimerID").selectedOptions[0].value);
+    console.log("alzheimerResponseValue = " + alzheimerResponseValue);
+
+    let totalRisk = ageResponseValue + bmiResponseValue + bloodPressureResponseValue + diabetesResponseValue + cancerResponseValue + alzheimerResponseValue
+    console.log("totalRisk = " + totalRisk) 
 
     document.getElementById("riskID").innerHTML = "Your total risk is: " + totalRisk;
     
