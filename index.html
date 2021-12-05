@@ -22,7 +22,11 @@
     <center><h1>Health Insurance Risk Calculator with Angelo Goduto</h1></center>
     <p><b style="text-align:center;"> </b></p> 
         <br /><br />
-    <h2>Instructions...</h2>
+    <h2>Below are going to be a few questions that I will have you answer.
+        From the way you answer the quesitons, in the background we will calculate
+        your health risk currently and determine this information for your 
+        insurance company.
+    </h2>
 <p> </p>
 
 <!-- This is where I asked questions to the user.-->
@@ -35,6 +39,62 @@
         <option value="30">greater than 60 years old</option>
     </select>
     <br /><br />
+
+    <!--<label>What is your BMI?</label><br />
+    <select id="bmiResultID">
+        <option value="0">normal</option>
+        <option value="10">overweight</option>
+        <option value="20">other</option>
+    </select>
+    <br /><br />-->
+
+    <label>What is your Height?</label><br />
+    <select id="heightID">
+        <option value="50">50 inches</option>
+        <option value="52">52 inches</option>
+        <option value="54">54 inches</option>
+        <option value="56">56 inches</option>
+        <option value="58">58 inches</option>
+        <option value="60">60 inches</option>
+        <option value="62">62 inches</option>
+        <option value="64">64 inches</option>
+        <option value="66">66 inches</option>
+        <option value="68">68 inches</option>
+        <option value="70">70 inches</option>
+        <option value="72">72 inches</option>
+        <option value="74">74 inches</option>
+        <option value="76">76 inches</option>
+        <option value="78">78 inches</option>
+        <option value="80">80 inches</option>
+        <option value="82">82 inches</option>
+        <option value="84">84 inches</option>
+        <option value="86">86 inches</option>
+        <option value="88">88 inches</option>
+        <option value="90">90 inches</option>
+    </select><br /><br />
+
+    <label>What is your weight?</label><br />
+    <select id="weightID">
+        <option value="100">100 lbs</option>
+        <option value="110">110 lbs</option>
+        <option value="120">120 lbs</option>
+        <option value="130">130 lbs</option>
+        <option value="140">140 lbs</option>
+        <option value="150">150 lbs</option>
+        <option value="160">160 lbs</option>
+        <option value="170">170 lbs</option>
+        <option value="180">180 lbs</option>
+        <option value="190">190 lbs</option>
+        <option value="200">200 lbs</option>
+    </select><br /><br />
+
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <p id="bmiResultID"></p>
+
+
+    <p>If your BMI is below 24.9, then select Normal.</p>
+    <p>If your BMI is between 29.9 and 24.9, then select Overweight.</p>
+    <p>If your BMI is above 29.9, please select Obese.</p>
 
     <label>What is your BMI?</label><br />
     <select id="bmiID">
@@ -55,6 +115,8 @@
         <option value="100">crisis</option>
     </select>
     <br /><br />
+
+    <img src="healthRiskCalculatorBloodPressure.png" alt="Health Insurance Picture" class="picture" style="width:1000px;height:500px;">
 
     <label>Do you have diabetes?</label><br />
     <select id="diabetesID">
@@ -120,7 +182,49 @@ function calculateRisk() {
     console.log("totalRisk = " + totalRisk) 
 
     document.getElementById("riskID").innerHTML = "Your total risk is: " + totalRisk;
-    
+
+    let message = "uninsurable"
+    if (totalRisk <= 20) {
+            message = "low risk" 
+    } else if (totalRisk <= 50) {
+        message = "moderate risk"
+    } else if (totalRisk <= 75) {
+        message = "highrisk"
+    } else {
+        Message = "uninsurable"
+    }
+
+    document.getElementById("riskID").innerHTML = message;
+}
+
+function BMI(height, weight) {
+    return (703 * weight) / (height * height)
+}
+
+function calculateBMI() {
+    console.log("calculateBMI()")
+    let heightValueInInches = parseInt(document.getElementById("heightID").selectedOptions[0].value);
+    let weightValueInLbs = parseInt(document.getElementById("weightID").selectedOptions[0].value);
+
+    console.log("Height="+heightValueInInches+" and weight="+weightValueInLbs);
+
+    let bmiValue = BMI(heightValueInInches, weightValueInLbs)
+    console.log("BMI="+bmiValue)
+
+    bmiValue = Math.round(bmiValue*10)/10
+    console.log("BMI="+bmiValue)
+
+    document.getElementById("bmiResultID").innerHTML = "Your Body Mass Index (BMI) is: " + bmiValue;
+
+    let bmiMessageID = ""
+    if (bmiValue < 24.9) {
+        BMIMessage = "Normal"
+    } else if (bmiValue < 29.9) {
+        BMIMessage = "Overweight"
+    } else {
+        BMIMessage = "Obese"
+    }
+
 }
 
 </script>
