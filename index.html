@@ -100,7 +100,7 @@
     <select id="bmiID">
         <option value="0">normal</option>
         <option value="10">overweight</option>
-        <option value="20">other</option>
+        <option value="20">Obese</option>
     </select>
     <br /><br />
 
@@ -117,6 +117,7 @@
     <br /><br />
 
     <img src="healthRiskCalculatorBloodPressure.png" alt="Health Insurance Picture" class="picture" style="width:1000px;height:500px;">
+    <br /><br />
 
     <label>Do you have diabetes?</label><br />
     <select id="diabetesID">
@@ -183,15 +184,20 @@ function calculateRisk() {
 
     document.getElementById("riskID").innerHTML = "Your total risk is: " + totalRisk;
 
-    let message = "uninsurable"
+    let message = "uninsurable " + " ---- A risk that an insurer will not take on."
     if (totalRisk <= 20) {
-            message = "low risk" 
+            message = "low risk " + 
+            " ---- A low-risk customer, risk, occupation, or property is not very likely to be exposed to a danger."
     } else if (totalRisk <= 50) {
-        message = "moderate risk"
+        message = "moderate risk " +
+            " ---- Moderate risk means a risk that occurs either where the frequency of low probability events is higher " +
+            " than expected under a normal probability distribution"
     } else if (totalRisk <= 75) {
-        message = "highrisk"
+        message = "high risk " +
+            " ---- You are classified as a higher risk than standard, you are subject to various degrees or ratings of " + 
+            " substandard, which each insurer approaches a bit differently."
     } else {
-        Message = "uninsurable"
+        Message = "uninsurable "
     }
 
     document.getElementById("riskID").innerHTML = message;
