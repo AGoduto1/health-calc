@@ -4,7 +4,7 @@
 <!--
     Author: Angelo Goduto
     Project: Insurance -- AAG
-    Credit: Eric Pogue
+    Credit: Eric Pogue for BMI Calculator
 
     All rights reserved.
 -->
@@ -27,7 +27,6 @@
         your health risk currently and determine this information for your 
         insurance company.
     </h2>
-<p> </p>
 
 <!-- This is where I asked questions to the user.-->
 
@@ -39,14 +38,6 @@
         <option value="30">greater than 60 years old</option>
     </select>
     <br /><br />
-
-    <!--<label>What is your BMI?</label><br />
-    <select id="bmiResultID">
-        <option value="0">normal</option>
-        <option value="10">overweight</option>
-        <option value="20">other</option>
-    </select>
-    <br /><br />-->
 
     <h1>For the two items below, give an estimate and if you're inbetween, round up to the nearest number.</h1>
 
@@ -89,7 +80,8 @@
         <option value="190">190 lbs</option>
         <option value="200">200 lbs</option>
     </select><br /><br />
-
+<!--In this location, I calculate the users BMI. I have them select their value after their BMI
+has been calculated.-->
     <button onclick="calculateBMI()">Calculate BMI</button>
     <p id="bmiResultID"></p>
 
@@ -105,8 +97,6 @@
         <option value="20">Obese</option>
     </select>
     <br /><br />
-
-    <!--https://stackoverflow.com/questions/21698044/basic-bmi-calculator-html-javascript-->
 
     <label>What is your blood pressure?</label><br />
     <select id="bloodPressureID">
@@ -143,7 +133,7 @@
     <br /><br />
 
     
-
+<!--This is where the Calculate Risk Button is located.-->
     <br /><br /><br />
     <button onclick="calculateRisk()">Calculate Risk</button>
     <p id="riskID"></p>
@@ -161,8 +151,6 @@ function calculateRisk() {
     console.log("ageResponse = " + ageResponseValue);
 
 // get the bmi value
-// Find height and weight in inches, then convert to inches and then to meters
-// Find weight in pounds and then convert into kg
     let bmiResponseValue = parseInt(document.getElementById("bmiID").selectedOptions[0].value);
     console.log("bmiResponseValue = " + bmiResponseValue);
 
@@ -186,6 +174,8 @@ function calculateRisk() {
 
     document.getElementById("riskID").innerHTML = "Your total risk is: " + totalRisk;
 
+// This is where I notify the user of what insurance companies will think of their responses above.
+
     let message = "uninsurable " + " ---- A risk that an insurer will not take on."
     if (totalRisk <= 20) {
             message = "low risk " + 
@@ -205,6 +195,8 @@ function calculateRisk() {
     document.getElementById("riskID").innerHTML = message;
 }
 
+// Below is how I calculated BMI
+
 function BMI(height, weight) {
     return (703 * weight) / (height * height)
 }
@@ -219,19 +211,23 @@ function calculateBMI() {
     let bmiValue = BMI(heightValueInInches, weightValueInLbs)
     console.log("BMI="+bmiValue)
 
+// This is where I round the number so it's not some long decimal.
+
     bmiValue = Math.round(bmiValue*10)/10
     console.log("BMI="+bmiValue)
 
     document.getElementById("bmiResultID").innerHTML = "Your Body Mass Index (BMI) is: " + bmiValue;
 
-    let bmiMessageID = ""
-    if (bmiValue < 24.9) {
-        BMIMessage = "Normal"
-    } else if (bmiValue < 29.9) {
-        BMIMessage = "Overweight"
-    } else {
-        BMIMessage = "Obese"
-    }
+   // below is information if I ever want to go back to the project.
+   
+    // let bmiMessageID = ""
+    // if (bmiValue < 24.9) {
+    //    BMIMessage = "Normal"
+    // } else if (bmiValue < 29.9) {
+    //    BMIMessage = "Overweight"
+    // } else {
+    //    BMIMessage = "Obese"
+    //}
 
 }
 
